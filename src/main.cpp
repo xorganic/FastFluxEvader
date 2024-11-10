@@ -48,20 +48,19 @@ int main(int argc, char* argv[]) {
             if (i + 1 < argc) {
                 payload = argv[++i];
             } else {
-                std::cerr << "Eroare: Flag-ul -p necesită un payload.\n";
+                std::cerr << "Error: The -p flag requires a payload.\n";
                 return 1;
             }
-        } else if (arg == "-f" || arg == "--fast-flux") {
-            fastFluxEnabled = true;
-        } else if (arg == "-h" || arg == "--help") {
-            printHelp();
-            return 0;
-        } else {
-            std::cerr << "Eroare: Flag necunoscut " << arg << "\n";
-            printHelp();
-            return 1;
+        } else if (arg == "--xor-key") {
+            if (i + 1 < argc) {
+                xor_key = static_cast<uint8_t>(std::stoi(argv[++i])); // conversie la uint8_t
+            } else {
+                std::cerr << "Error: The --xor-key flag requires a value.\n";
+                return 1;
+            }
         }
     }
+
 
     // Validare dacă payload-ul a fost setat
     if (payload.empty()) {
