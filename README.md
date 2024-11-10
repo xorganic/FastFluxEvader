@@ -13,7 +13,7 @@
                    ███████╗╚██████╔╝██║  ██║██║  ██║███████╗██║  ██║
                    ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
 
-FastFluxEvader is an advanced tool for obfuscating payloads and converting them into a rotating set of IPv4 addresses using Fast-Flux DNS techniques. This tool is designed to help penetration testers and security researchers evade detection systems by masking the C2 server location through a randomized, rotative IP generation scheme.
+FastFluxEvader is a tool for payloads obfuscation and converts them into a rotating set of IPv4 addresses using Fast-Flux DNS techniques. This tool is designed to help penetration testers and security researchers evade detection systems by masking the C2 server location through a randomized, rotative IP generation scheme.
 
 ## Features
 
