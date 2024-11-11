@@ -1,94 +1,112 @@
+# FastFluxEvader
 
-                  ███████╗ █████╗ ███████╗████████╗███████╗██╗     ██╗   ██╗██╗  ██╗
-                  ██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔════╝██║     ██║   ██║╚██╗██╔╝
-                  █████╗  ███████║███████╗   ██║   █████╗  ██║     ██║   ██║ ╚███╔╝ 
-                  ██╔══╝  ██╔══██║╚════██║   ██║   ██╔══╝  ██║     ██║   ██║ ██╔██╗ 
-                  ██║     ██║  ██║███████║   ██║   ███████╗███████╗╚██████╔╝██╔╝ ██╗
-                  ╚═╝     ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
-                                                                  
-                   ███████╗██╗   ██╗ █████╗ ██████╗ ███████╗██████╗ 
-                   ██╔════╝██║   ██║██╔══██╗██╔══██╗██╔════╝██╔══██╗
-                   █████╗  ██║   ██║███████║██████╔╝█████╗  ██████╔╝
-                   ██╔══╝  ██║   ██║██╔══██║██╔══██╗██╔══╝  ██╔══██╗
-                   ███████╗╚██████╔╝██║  ██║██║  ██║███████╗██║  ██║
-                   ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-
-FastFluxEvader is a tool for payloads obfuscation and converts them into a rotating set of IPv4 addresses using Fast-Flux DNS techniques. This tool is designed to help penetration testers and security researchers evade detection systems by masking the C2 server location through a randomized, rotative IP generation scheme.
+FastFluxEvader is a tool designed to obfuscate payloads by converting them into hexadecimal format. It provides a simple method for payload masking, useful in security testing and Red Team engagements, where it’s essential to avoid detection through simple static analysis. This tool is designed for pre-processing payloads that will later be deobfuscated and executed by a loader.
 
 ## Features
 
-- **Payload Obfuscation**: Converts payloads to hexadecimal format for obfuscation.
-- **Fast-Flux IP Rotation**: Generates a dynamic set of IPv4 addresses to simulate a Fast-Flux DNS network.
-- **Customizable Parameters**: Supports command-line flags for specifying payload and enabling Fast-Flux rotation.
-- **Optimized Performance**: Implements key operations in Assembly for efficient IP rotation and obfuscation.
+- **Payload Obfuscation**: Transforms payloads into hexadecimal format to help avoid signature-based detection.
+- **Command-line Support**: Offers flags to specify the payload and customization for flexible usage.
+- **Cross-Platform Compatibility**: Supports both Linux and Windows installations.
 
-## Installation
+## How to Use FastFluxEvader
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/YourUsername/FastFluxEvader.git
-   cd FastFluxEvader
-   ```
- 2. **Build the project**:
+After installation, you can use FastFluxEvader to obfuscate a payload directly from the command line. The obfuscated payload can then be passed to a loader or script for deobfuscation and execution.
 
-Ensure you have cmake and nasm installed.
-Use the provided build script to compile the project.
+### Command-Line Flags
+
+- `-p` or `--payload`: Specifies the payload string to obfuscate. **Required.**
+- `-h` or `--help`: Displays help information about available flags.
+
+### Example Command
+
+To obfuscate a payload:
 ```bash
-chmod +x build.sh
-./build.sh
-```
-Dependencies:
-
-cmake (for build automation)
-nasm (for Assembly compilation)
-Usage
-Command-Line Flags
--p or --payload: Specifies the payload string to obfuscate. Required.
--f or --fast-flux: Enables Fast-Flux IP rotation. Optional.
--h or --help: Displays help information.
-Example Command
-To obfuscate a payload and enable Fast-Flux rotation:
-
-```bash
-./FastFluxEvader -p "example_payload" -f
+./FastFluxEvader -p "example_payload"
 ```
 Example Output
-python
-Copy code
+```yaml
 Payload obfuscated: 6578616d706c655f7061796c6f6164
-Fast-Flux IPs generated:
-0xaabbccdd
-0x11223344
-...
-Implementation Details
-Obfuscation Module (obfuscation.cpp)
-Converts the payload to a hexadecimal string using bitwise operations, complicating static analysis and detection.
+```
+The output will be the obfuscated hexadecimal version of the specified payload, which can then be further processed as required.
 
-Fast-Flux Rotation (fast_flux.cpp)
-Generates a series of IP addresses by applying Fast-Flux techniques with pseudo-random IP generation. Utilizes a 32-bit hash seed to ensure unique IP sequences per payload.
+## Installation
+FastFluxEvader can be installed on both Linux and Windows. Below are the installation instructions for each platform.
 
-Assembly Integration (asm_integration.asm)
-Implements a bitwise left rotation in Assembly for high-performance IP obfuscation, making detection more difficult.
+### Linux Installation
+Clone the repository:
 
-Testing
-Unit tests are included in the tests/ directory, and use GoogleTest for validation.
+```bash
+git clone https://github.com/YourUsername/FastFluxEvader.git
+cd FastFluxEvader
+```
+Run the setup script to install dependencies:
 
-Run tests:
+Ensure you have sudo permissions to install packages.
+The setup script will install cmake, nasm, and GoogleTest.
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+Build the project:
 
+```bash
+./build.sh
+```
+ Run the tool:
+After the build completes, use the tool as described in the usage section.
+```bash
+./FastFluxEvader -p "example_payload"
+```
+### Windows Installation
+Install Chocolatey (if not already installed):
+
+Open Command Prompt as Administrator and run the following command:
+
+cmd
+Copy code
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "Set-ExecutionPolicy Bypass -Scope Process; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+Clone the repository:
+
+Open a new Command Prompt and run:
+
+```cmd
+git clone https://github.com/YourUsername/FastFluxEvader.git
+cd FastFluxEvader
+```
+Run the setup script to install dependencies:
+
+The setup script will use Chocolatey to install cmake and nasm.
+```cmd
+setup.bat
+```
+Build the project:
+
+After dependencies are installed, compile the project using cmake and nmake:
+
+```cmd
+mkdir build
+cd build
+cmake ..
+nmake
+```
+Run the tool:
+
+Run the tool from the Command Prompt, providing the required payload flag.
+
+```cmd
+FastFluxEvader.exe -p "example_payload"
+```
+## Testing
+FastFluxEvader includes unit tests using GoogleTest. On Linux, tests can be run with ctest after building the project. On Windows, you may need to build GoogleTest manually and configure the test paths in CMake.
+
+### Running Tests on Linux
 ```bash
 cd build
 ctest
 ```
-Expected Output:
-
-All tests should pass without errors.
-Coverage includes obfuscation validation, Fast-Flux rotation, and utility hashing.
-Technical Requirements
-C++17: Project is built with C++17 for compatibility and performance.
-Assembly: NASM is used for inline Assembly to optimize specific functions.
-Randomized IP Generation: Uses std::mt19937 for reliable pseudo-random Fast-Flux IP rotation.
-Contributions
-Contributions are welcome. Please fork the repository, create a branch, and submit a pull request.
-
-License
-This project is licensed under the MIT License.
+### Running Tests on Windows
+Build GoogleTest from source if not already available.
+Configure test paths in CMakeLists.txt to point to your GoogleTest libraries.
+Run the tests using ctest from the build directory.
+## License
+FastFluxEvader is licensed under the MIT License. Contributions are welcome!
