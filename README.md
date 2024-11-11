@@ -36,7 +36,7 @@ FastFluxEvader can be installed on both Linux and Windows. Below are the install
 Clone the repository:
 
 ```bash
-git clone https://github.com/YourUsername/FastFluxEvader.git
+git clone https://github.com/xorganic/FastFluxEvader.git
 cd FastFluxEvader
 ```
 Run the setup script to install dependencies:
