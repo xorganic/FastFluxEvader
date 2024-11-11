@@ -62,11 +62,10 @@ Install Chocolatey (if not already installed):
 
 Open Command Prompt as Administrator and run the following command:
 
-cmd
-Copy code
+```cmd
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "Set-ExecutionPolicy Bypass -Scope Process; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+```
 Clone the repository:
-
 Open a new Command Prompt and run:
 
 ```cmd
